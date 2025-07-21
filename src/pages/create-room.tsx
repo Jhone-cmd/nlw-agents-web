@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
 import { Link } from 'react-router-dom'
 
-type GetRoomsApiResponse = {
+type GetRoomsApiResponse = Array<{
   id: string
   name: string
-}
+}>
 
 export function CreateRoom() {
   const { data, isLoading } = useQuery({
@@ -12,9 +12,11 @@ export function CreateRoom() {
     queryFn: async () => {
       const response = await fetch('http://localhost:3333/rooms')
 
-      const result: GetRoomsApiResponse[] = await response.json()
+      const { results } = await response.json()
 
-      return result
+      const rooms: GetRoomsApiResponse = results
+
+      return rooms
     },
   })
   return (
@@ -23,14 +25,15 @@ export function CreateRoom() {
 
       {isLoading && <p>Carregando...</p>}
 
-      <div>
+      <div className="flex flex-col gap-1">
         {data?.map((room) => {
-          return <p key={room.id}>{room.name}</p>
+          return (
+            <Link key={room.id} to={`/room/${room.id}`}>
+              {room.name}
+            </Link>
+          )
         })}
       </div>
-      <Link className="underline" to="/room">
-        acessar sala
-      </Link>
     </div>
   )
 }
