@@ -10,6 +10,9 @@
     "rules": {
       "nursery": {
         "noUnknownAtRule": "off"
+      },
+      "suspicious": {
+        "noConsole": "off"
       }
     }
   }
