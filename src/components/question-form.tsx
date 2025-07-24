@@ -18,6 +18,7 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Textarea } from '@/components/ui/textarea'
+import { createQuestion } from '@/http/create-question'
 
 // Esquema de validação no mesmo arquivo conforme solicitado
 const createQuestionSchema = z.object({
@@ -35,15 +36,17 @@ interface QuestionFormProps {
 }
 
 export function QuestionForm({ roomId }: QuestionFormProps) {
-  const form = useForm<CreateQuestionFormData>({
+  const { mutateAsync: create_question } = createQuestion(roomId)
+  const createQuestionForm = useForm<CreateQuestionFormData>({
     resolver: zodResolver(createQuestionSchema),
     defaultValues: {
       question: '',
     },
   })
 
-  function handleCreateQuestion(data: CreateQuestionFormData) {
-    console.log(data, roomId)
+  async function handleCreateQuestion(data: CreateQuestionFormData) {
+    await create_question(data)
+    createQuestionForm.reset()
   }
 
   return (
@@ -55,13 +58,13 @@ export function QuestionForm({ roomId }: QuestionFormProps) {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <Form {...form}>
+        <Form {...createQuestionForm}>
           <form
             className="flex flex-col gap-4"
-            onSubmit={form.handleSubmit(handleCreateQuestion)}
+            onSubmit={createQuestionForm.handleSubmit(handleCreateQuestion)}
           >
             <FormField
-              control={form.control}
+              control={createQuestionForm.control}
               name="question"
               render={({ field }) => (
                 <FormItem>
