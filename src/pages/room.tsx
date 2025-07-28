@@ -21,13 +21,16 @@ export function Room() {
         <div className="mb-8">
           <div className="mb-4 flex items-center justify-between">
             <Link to="/">
-              <Button variant="outline">
+              <Button className="cursor-pointer" variant="outline">
                 <ArrowLeft className="mr-2 size-4" />
                 Voltar ao Início
               </Button>
             </Link>
             <Link to={`/rooms/${roomId}/audio`}>
-              <Button className="flex items-center gap-2" variant="secondary">
+              <Button
+                className="flex cursor-pointer items-center gap-2"
+                variant="secondary"
+              >
                 <Radio className="size-4" />
                 Gravar Áudio
               </Button>

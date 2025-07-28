@@ -81,7 +81,9 @@ export function QuestionForm({ roomId }: QuestionFormProps) {
               )}
             />
 
-            <Button type="submit">Enviar pergunta</Button>
+            <Button className="cursor-pointer" type="submit">
+              Enviar pergunta
+            </Button>
           </form>
         </Form>
       </CardContent>

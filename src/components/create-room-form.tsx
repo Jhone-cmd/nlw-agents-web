@@ -99,7 +99,7 @@ export function CreateRoomForm() {
               }}
             />
 
-            <Button className="w-full" type="submit">
+            <Button className="w-full cursor-pointer" type="submit">
               Criar Sala
             </Button>
           </form>
