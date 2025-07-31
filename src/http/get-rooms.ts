@@ -5,13 +5,15 @@ export function getRooms() {
   return useQuery({
     queryKey: ['get-rooms'],
     queryFn: async () => {
-      const response = await fetch('http://localhost:3333/rooms')
+      const response = await fetch(
+        'https://nlw-agents-server-production.up.railway.app/rooms'
+      )
 
       const { results } = await response.json()
 
-      const rooms: GetRoomsResponse = results
+      const questions: GetRoomsResponse = results
 
-      return rooms
+      return questions
     },
   })
 }

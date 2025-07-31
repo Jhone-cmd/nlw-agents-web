@@ -47,10 +47,13 @@ export function RecordRoomAudio() {
 
     formData.append('audio_file', audio, 'audio_file.webm')
 
-    await fetch(`http://localhost:3333/rooms/${roomId}/audio`, {
-      method: 'Post',
-      body: formData,
-    })
+    await fetch(
+      `https://nlw-agents-server-production.up.railway.app/rooms/${roomId}/audio`,
+      {
+        method: 'POST',
+        body: formData,
+      }
+    )
   }
 
   function createRecorder(audio: MediaStream) {

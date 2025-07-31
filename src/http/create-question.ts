@@ -9,7 +9,7 @@ export function createQuestion(roomId: string) {
   return useMutation({
     mutationFn: async (data: CreateQuestionRequest) => {
       const response = await fetch(
-        `http://localhost:3333/rooms/${roomId}/questions`,
+        `https://nlw-agents-server-production.up.railway.app/rooms/${roomId}/questions`,
         {
           method: 'POST',
           headers: {

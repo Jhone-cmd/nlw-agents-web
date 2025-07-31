@@ -7,13 +7,16 @@ export function createRoom() {
 
   return useMutation({
     mutationFn: async (data: CreateRoomRequest) => {
-      const response = await fetch('http://localhost:3333/rooms', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      })
+      const response = await fetch(
+        'https://nlw-agents-server-production.up.railway.app/rooms',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        }
+      )
 
       const result: CreateRoomResponse = await response.json()
 
