@@ -1,4 +1,4 @@
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Loader2 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { getRooms } from '@/http/get-rooms'
 import { dayjs } from '@/lib/dayjs'
@@ -12,7 +12,7 @@ import {
 } from './ui/card'
 
 export function RoomList() {
-  const { data, isLoading } = getRooms()
+  const { data, isLoading, isError } = getRooms()
   return (
     <Card>
       <CardHeader>
@@ -23,7 +23,16 @@ export function RoomList() {
       </CardHeader>
       <CardContent className="flex flex-col gap-3">
         {isLoading && (
-          <p className="text-muted-foreground text-sm">Carregando Salas...</p>
+          <div className="flex items-center justify-center gap-2">
+            <Loader2 className="size-4 animate-spin text-primary" />
+            <p className="text-muted-foreground text-sm">Carregando Salas...</p>
+          </div>
+        )}
+
+        {(isError || data?.length === 0) && (
+          <p className="text-muted-foreground text-sm">
+            Nenhuma sala encontrada.
+          </p>
         )}
 
         {data?.map((room) => {
