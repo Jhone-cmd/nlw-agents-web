@@ -14,7 +14,7 @@ type RoomParams = {
 export function RecordRoomAudio() {
   const [isRecording, setIsRecording] = useState(false)
   const recorder = useRef<MediaRecorder | null>(null)
-  const intervalRef = useRef<NodeJS.Timeout | null>(null)
+  //const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
   const { roomId } = useParams<RoomParams>()
 
@@ -37,9 +37,9 @@ export function RecordRoomAudio() {
       recorder.current.stop()
     }
 
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current)
-    }
+    // if (intervalRef.current) {
+    //   clearInterval(intervalRef.current)
+    // }
   }
 
   async function uploadAudio(audio: Blob) {
@@ -80,11 +80,11 @@ export function RecordRoomAudio() {
 
     createRecorder(audio)
 
-    intervalRef.current = setInterval(() => {
-      recorder.current?.stop()
+    // intervalRef.current = setInterval(() => {
+    //   recorder.current?.stop()
 
-      createRecorder(audio)
-    }, 5000) // Grava por 5 segundos
+    //   createRecorder(audio)
+    // }, 5000) // Grava por 5 segundos
   }
 
   return (
@@ -101,6 +101,7 @@ export function RecordRoomAudio() {
           Gravar Audio
         </Button>
       )}
+      {isRecording ? <p>Gravando...</p> : null}
     </div>
   )
 }

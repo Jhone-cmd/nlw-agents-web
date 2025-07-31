@@ -8,6 +8,9 @@ export function CreateRoom() {
         <div className="grid grid-cols-2 items-start gap-8">
           <CreateRoomForm />
           <RoomList />
+          <footer className="col-span-2 mt-12 text-center text-muted-foreground text-sm">
+            <p>Feito com a RocketSeat ©</p>
+          </footer>
         </div>
       </div>
     </div>

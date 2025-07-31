@@ -5,7 +5,7 @@ import { dayjs } from '@/lib/dayjs'
 interface Question {
   id: string
   question: string
-  answer?: string | null
+  answer: string | null
   createdAt: string
   isGeneratingAnswer?: boolean
 }
@@ -62,6 +62,8 @@ export function QuestionItem({ question }: QuestionItemProps) {
               </div>
             </div>
           )}
+
+          {/* Timestamp */}
           <div className="flex justify-end">
             <span className="text-muted-foreground text-xs">
               {dayjs(question.createdAt).toNow()}

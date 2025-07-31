@@ -6,7 +6,7 @@ interface QuestionProps {
 }
 
 export function QuestionList({ roomId }: QuestionProps) {
-  const { data } = GetRoomQuestions(roomId)
+  const { data: questions } = GetRoomQuestions(roomId)
 
   return (
     <div className="space-y-6">
@@ -16,7 +16,7 @@ export function QuestionList({ roomId }: QuestionProps) {
         </h2>
       </div>
 
-      {data?.map((question) => {
+      {questions?.map((question) => {
         return <QuestionItem key={question.id} question={question} />
       })}
     </div>
