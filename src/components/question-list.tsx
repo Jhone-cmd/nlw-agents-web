@@ -11,7 +11,7 @@ export function QuestionList({ roomId }: QuestionProps) {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="font-semibold text-2xl text-foreground">
+        <h2 className="text-center font-semibold text-2xl text-foreground sm:text-left">
           Perguntas & Respostas
         </h2>
       </div>

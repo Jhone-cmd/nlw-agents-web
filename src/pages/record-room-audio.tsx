@@ -1,5 +1,6 @@
+import { ArrowLeft } from 'lucide-react'
 import { useRef, useState } from 'react'
-import { Navigate, useParams } from 'react-router'
+import { Link, Navigate, useParams } from 'react-router'
 import { Button } from '@/components/ui/button'
 
 const isRecordingSupported =
@@ -91,20 +92,24 @@ export function RecordRoomAudio() {
   }
 
   return (
-    <div className="flex h-screen flex-col items-center justify-center gap-3">
-      {' '}
-      {isRecording ? (
-        <Button className="cursor-pointer" onClick={stopRecording}>
-          {' '}
-          Encerrar Gravação
-        </Button>
-      ) : (
-        <Button className="cursor-pointer" onClick={startRecording}>
-          {' '}
-          Gravar Audio
-        </Button>
-      )}
-      {isRecording ? <p>Gravando...</p> : null}
+    <div className="flex min-h-screen flex-col">
+      <div className="flex w-full justify-center p-4">
+        <Link className="w-full sm:w-auto" to={`/rooms/${roomId}/`}>
+          <Button className="w-full cursor-pointer sm:w-auto" variant="outline">
+            <ArrowLeft className="mr-2 size-4" />
+            Voltar a Sala de Perguntas
+          </Button>
+        </Link>
+      </div>
+
+      <div className="flex flex-1 flex-col items-center justify-center gap-3">
+        {isRecording ? (
+          <Button onClick={stopRecording}> Encerrar Gravação</Button>
+        ) : (
+          <Button onClick={startRecording}> Gravar Audio</Button>
+        )}
+        {isRecording && <p>Gravando...</p>}
+      </div>
     </div>
   )
 }

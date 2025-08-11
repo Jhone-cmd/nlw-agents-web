@@ -17,18 +17,21 @@ export function Room() {
 
   return (
     <div className="min-h-screen bg-zinc-950">
-      <div className="container mx-auto max-w-4xl px-4 py-8">
+      <div className="container mx-auto max-w-4xl px-2 py-6 sm:px-4 sm:py-8">
         <div className="mb-8">
-          <div className="mb-4 flex items-center justify-between">
-            <Link to="/">
-              <Button className="cursor-pointer" variant="outline">
+          <div className="b-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <Link className="w-full sm:w-auto" to="/">
+              <Button
+                className="w-full cursor-pointer sm:w-auto"
+                variant="outline"
+              >
                 <ArrowLeft className="mr-2 size-4" />
                 Voltar ao Início
               </Button>
             </Link>
-            <Link to={`/rooms/${roomId}/audio`}>
+            <Link className="w-full sm:w-auto" to={`/rooms/${roomId}/audio`}>
               <Button
-                className="flex cursor-pointer items-center gap-2"
+                className="flex w-full cursor-pointer items-center gap-2 sm:w-auto"
                 variant="secondary"
               >
                 <Radio className="size-4" />
@@ -36,10 +39,10 @@ export function Room() {
               </Button>
             </Link>
           </div>
-          <h1 className="mb-2 font-bold text-3xl text-foreground">
+          <h1 className="mt-4 mb-2 text-center font-bold text-2xl text-foreground sm:text-left sm:text-3xl">
             Sala de Perguntas
           </h1>
-          <p className="text-muted-foreground">
+          <p className="text-center text-base text-muted-foreground sm:text-left sm:text-lg">
             Faça perguntas e receba respostas com IA
           </p>
         </div>
